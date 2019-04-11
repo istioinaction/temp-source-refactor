@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t istioinaction/apigateway:latest .
+docker build -t istioinaction/backend:latest .

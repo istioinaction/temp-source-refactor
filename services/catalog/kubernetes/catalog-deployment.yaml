@@ -8,7 +8,6 @@ metadata:
   name: catalog
 spec:
   replicas: 1
-  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: catalog
@@ -27,28 +26,10 @@ spec:
               fieldPath: metadata.namespace
         image: istioinaction/catalog:latest
         imagePullPolicy: IfNotPresent
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 180
-        name: spring-boot
+        name: catalog
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
           name: http
           protocol: TCP
-        - containerPort: 9779
-          name: prometheus
-          protocol: TCP
-        - containerPort: 8778
-          name: jolokia
-          protocol: TCP
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 10
         securityContext:
           privileged: false
